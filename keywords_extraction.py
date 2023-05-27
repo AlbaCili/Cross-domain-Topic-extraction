@@ -54,7 +54,7 @@ for file in cut_indeces:
 
         fnames_keys[name]= keywords_dict
 
-############################ Keyphrases Data Frame  ####################################################
+############################ Keywords Data Frame  ####################################################
 
 dataFrame =  pd.DataFrame(fnames_keys)
 df = dataFrame.rename_axis('Keywords')
