@@ -6,17 +6,11 @@ from pandas import pandas as pd
 import numpy as np
 
 
-if __name__=="__main__":
-    pass
-
 path_html = "Arts/Html_art/*.html" #example directory
 html_files = glob.glob(path_html)
 
 # it sorts files based on their numbers
 html_files.sort(key=lambda var:[int(x) if x.isdigit() else x for x in re.findall(r'[^0-9]|[0-9]+', var)])
-
-cut_indeces = html_files[:]
-
 
 def keywords_length(list) -> list :
 
@@ -88,8 +82,3 @@ df_meta.insert(0, "Files", nameFile_metadata.keys())
 datatoexcel = pd.ExcelWriter('Testing/webscraping/arts/metadata/Metadata_arts.xlsx', engine = "xlsxwriter")
 df_meta.to_excel(datatoexcel)
 datatoexcel.save()
-
-#print(nameFile_metadata[name_file]["Title"])
-
-
-##description = soup.find_all('meta', attrs={'name':"Description"})
