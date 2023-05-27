@@ -2,10 +2,8 @@ import nltk
 import glob
 import re
 
-if __name__=="__main__":
-    pass
 
-files = "Arts/Txt_arts/*.txt"
+files = "Arts/Txt_arts/*.txt" #example path
 txt_files = glob.glob(files)
 
 txt_files.sort(key=lambda var:[int(x) if x.isdigit() else x for x in re.findall(r'[^0-9]|[0-9]+', var)])
@@ -23,7 +21,7 @@ for file in cut_indeces:
         replace = " ".join(f).replace("\n","").replace("\xa0","")
         replace2 = " ".join(word.replace("*","")for word in nltk.word_tokenize(replace))
 
-        with open('Testing/normalization/'+full_name,'w') as fi:
+        with open('Testing/normalization/'+full_name,'w') as fi:  #example path
             fi.writelines(replace2)
 
 
