@@ -3,24 +3,19 @@ import openpyxl
 import numpy as np
 import glob
 import re
-from nltk.text import Text
 import nltk
 from collections import defaultdict
 from nltk.util import everygrams
 import string
 from nltk.corpus import stopwords
 import os
-
-if __name__=="__main__":
-    pass
-
 stripping = string.punctuation
 
-length1 = 5
-length2 = 5
-part = 2
+length1 = 2
+length2 = 2
+part = 1
 
-top = 10
+top = 5
 
 pardir = os.path.dirname(__file__)
 
@@ -32,19 +27,12 @@ txt_files = glob.glob(path_txt)
 txt_files.sort(key=lambda var:[int(x) if x.isdigit()
                                else x for x in re.findall(r'[^0-9]|[0-9]+', var)])
 
-print(txt_files)
-
-#excel_file = os.path.join(pardir, f"Anthropology/Anthropology_results/Top{top}/Part{part}/Anth_Top{top}_Range{length1}_{length2}.xlsx")
 
 #Remember you have to check one file at a time.
 excel_file = os.path.join(pardir, f"BusiPsy/BusiPsy_results/Top{top}/Part{part}/BusiPsy_Top{top}Range{length1}_{length2}.xlsx")
 
-#excel_file = os.path.join(pardir, "BusiPsy_results/BusiPsy_vectorizer.xlsx")
-excel_file = glob.glob(excel_file)
-#excel_file.sort(key=lambda var:[int(x) if x.isdigit()
-                                #else x for x in re.findall(r'[^0-9]|[0-9]+', var)])
-print(excel_file)
 
+excel_file = glob.glob(excel_file)
 dictionary = {}
 
 def excel_to_dict(excel_file_path, top):
@@ -94,13 +82,14 @@ def getting_context(list, id):
 
     if left < 0:
         new_left = id-5
-        #print(new_left)
+      
         if new_left < 0:
             return list[id-3:right]
+        
         else: return list[new_left:right]
 
     else: return list[left:right]
-    #return list[id-10:id+10]
+
 
 
 excel_dict = excel_to_dict(excel_file,top)
@@ -177,7 +166,7 @@ else:
             txt.write('%s:%s\n' % (key, value))
 
 
-print(concordances)
+
 
 
 
