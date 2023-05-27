@@ -55,7 +55,7 @@ for file in html_files:
         full_text = soup.find_all('meta', attrs={'name':"citation_fulltext_html_url"})[0]['content']
         doi = soup.find_all('meta', attrs={'name':"citation_doi"})[0]['content']
 
-        name_file = "art"+str(id)+"_"+date #the name abbreviation can change based on the domain this is an exampel
+        name_file = "art"+str(id)+"_"+date #the name abbreviation can change based on the domain this is an example
 
         file_metadata['Title'] = title
         file_metadata['Journal Title']= journal_title
