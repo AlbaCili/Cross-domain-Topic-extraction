@@ -79,6 +79,6 @@ df_meta.index = np.arange(1,len(df_meta)+1) # it starts from index 1
 df_meta = df_meta.rename_axis('ID')
 df_meta.insert(0, "Files", nameFile_metadata.keys())
 
-datatoexcel = pd.ExcelWriter('Testing/webscraping/arts/metadata/Metadata_arts.xlsx', engine = "xlsxwriter")
+datatoexcel = pd.ExcelWriter('Testing/webscraping/arts/metadata/Metadata_arts.xlsx', engine = "xlsxwriter") #example path
 df_meta.to_excel(datatoexcel)
 datatoexcel.save()
