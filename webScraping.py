@@ -2,20 +2,11 @@ from bs4 import BeautifulSoup
 import glob
 import re
 
-
-
-if __name__=="__main__":
-    pass
-
-
-path_html = "Arts/Html_art/*.html"
+path_html = "Arts/Html_art/*.html" #example path
 html_files = glob.glob(path_html)
 
 # it sorts files based on their numbers
 html_files.sort(key=lambda var:[int(x) if x.isdigit() else x for x in re.findall(r'[^0-9]|[0-9]+', var)])
-
-cut_indeces = html_files[:]
-
 
 for file in html_files:
 
@@ -26,8 +17,8 @@ for file in html_files:
 
         soup = BeautifulSoup(f, 'html.parser')
         section = soup.find_all('section',attrs={'class':'article-section__content'})
-        abstract = soup.find_all('div', attrs={'class': 'abstract-group'})
-        date = soup.find_all('meta', attrs={'name':"citation_online_date"})[0]['content'].replace("/","-")
+        abstract = soup.find_all('div', attrs={'class': 'abstract-group'})# getting the abstract
+        date = soup.find_all('meta', attrs={'name':"citation_online_date"})[0]['content'].replace("/","-") #getting the date for id
 
         for ab in abstract:
             ab_paragraph = ab.find("p") # finding the paragraph
@@ -44,7 +35,7 @@ for file in html_files:
                  else: article.append(text)
 
 
-        with open('Testing/webscraping/arts/art'+str(id)+"_"+date+'.txt','w') as fi:
+        with open('Testing/webscraping/arts/art'+str(id)+"_"+date+'.txt','w') as fi: #example path
              fi.writelines(" ".join(article))
 
 
